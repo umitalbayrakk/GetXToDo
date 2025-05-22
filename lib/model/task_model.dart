@@ -2,5 +2,7 @@
 class Task {
   String title;
   bool isComplete;
-  Task({required this.title, this.isComplete = false});
+  String description;
+
+  Task({required this.description, required this.title, this.isComplete = false});
 }

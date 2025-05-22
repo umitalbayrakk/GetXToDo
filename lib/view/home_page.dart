@@ -7,7 +7,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 
 class HomePage extends StatelessWidget {
-  // TaskController taskController = Get.put(TaskController());
+  //MARK: TaskController
   final TaskController taskController = Get.put(TaskController());
 
   HomePage({super.key});
@@ -30,21 +30,33 @@ class HomePage extends StatelessWidget {
           itemCount: taskController.taskList.length,
           itemBuilder: (context, index) {
             final task = taskController.taskList[index];
-            return ListTile(
-              subtitle: Text(taskController.formattedDate),
-              title: Text(
-                taskController.taskList[index].title,
-                style: TextStyle(decoration: task.isComplete ? TextDecoration.lineThrough : TextDecoration.none),
-              ),
-              leading: IconButton(
-                icon: const Icon(Icons.delete, color: AppColors.buttonColor),
-                onPressed: () => taskController.deleleteTask(index),
-              ),
-              trailing: Checkbox(
-                value: taskController.taskList[index].isComplete,
-                onChanged: (value) {
-                  taskController.toggleTaskCompleted(index);
-                },
+            return Padding(
+              padding: const EdgeInsets.only(right: 15, left: 15, top: 5),
+              child: Card(
+                color: AppColors.cardColor3,
+                child: ListTile(
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text(taskController.formattedDate), Text(task.description)],
+                  ),
+                  title: Text(
+                    taskController.taskList[index].title,
+                    style: TextStyle(
+                      decoration: task.isComplete ? TextDecoration.lineThrough : TextDecoration.none,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  leading: IconButton(
+                    icon: const Icon(Icons.delete, color: AppColors.buttonColor),
+                    onPressed: () => taskController.deleleteTask(index),
+                  ),
+                  trailing: Checkbox(
+                    value: taskController.taskList[index].isComplete,
+                    onChanged: (value) {
+                      taskController.toggleTaskCompleted(index);
+                    },
+                  ),
+                ),
               ),
             );
           },

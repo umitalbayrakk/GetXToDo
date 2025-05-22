@@ -5,7 +5,6 @@ import 'package:get/instance_manager.dart';
 
 class TaskAddPage extends StatelessWidget {
   final TaskController taskController = Get.put(TaskController());
-
   final TextEditingController textController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   TaskAddPage({super.key});
